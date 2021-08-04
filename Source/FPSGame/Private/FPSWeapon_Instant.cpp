@@ -20,11 +20,16 @@ void AFPSWeapon_Instant::FireWeapon()
 	FVector EndTrace = StartTrace + AimDir * MaxRange;
 	FHitResult Impact = WeaponTrace(StartTrace, EndTrace);
 	
+	// Spawn Impact FX at the location of the Hit
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactFX, Impact.Location, StartTrace.Rotation());
+
 	// try and play the sound if specified
 	if (FireSound)
 	{
 		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
 	}
 	
+	
+
 }
 
