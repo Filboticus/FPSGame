@@ -5,6 +5,7 @@
 #include "FPSCharacter.h"
 #include "FPSPlayerController.h"
 #include "DrawDebugHelpers.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -92,6 +93,9 @@ FHitResult AFPSWeapon::WeaponTrace(const FVector & StartTrace, const FVector & E
 		DrawDebugPoint(GetWorld(), StartTrace, 15, FColor::Red, true);
 		DrawDebugLine(GetWorld(), StartTrace, Hit.Location, FColor::Red, true);
 		DrawDebugPoint(GetWorld(), Hit.Location, 15, FColor::Red, true);
+
+		// Spawn Impact FX at the location of the Hit
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactFX, Hit.Location, StartTrace.Rotation());
 	}
 	
 	return Hit;
