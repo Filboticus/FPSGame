@@ -9,6 +9,43 @@
 class AFPSCharacter;
 class USoundBase;
 
+USTRUCT()
+struct FWeaponData
+{
+	GENERATED_USTRUCT_BODY()
+
+	/** max ammo */
+	UPROPERTY(EditDefaultsOnly, Category = "Ammo")
+	int32 MaxAmmo;
+
+	/** magazine size */
+	UPROPERTY(EditDefaultsOnly, Category = "Ammo")
+	int32 AmmoPerMagazine;
+
+	/** initial magazines */
+	UPROPERTY(EditDefaultsOnly, Category = "Ammo")
+	int32 InitialMagazines;
+
+	/**  time between two consecutive shots */
+	UPROPERTY(EditDefaultsOnly, Category = "WeaponStat")
+	float TimeBetweenShots;
+
+	/** failsafe reload duration if weapon doesn't have any animation for it */
+	UPROPERTY(EditDefaultsOnly, Category = "WeaponStat")
+	float NoAnimReloadDuration;
+
+	/** defaults */
+	FWeaponData()
+	{
+		MaxAmmo = 100;
+		AmmoPerMagazine = 20;
+		InitialMagazines = 4;
+		TimeBetweenShots = 0.2f;
+		NoAnimReloadDuration = 1.0f;
+	}
+};
+
+
 UCLASS()
 class FPSGAME_API AFPSWeapon : public AActor
 {

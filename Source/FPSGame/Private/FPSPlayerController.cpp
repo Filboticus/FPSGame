@@ -8,3 +8,18 @@ AFPSPlayerController::AFPSPlayerController(const FObjectInitializer& ObjectIniti
 {
 	PlayerCameraManagerClass = AFPSPlayerCameraManager::StaticClass();
 }
+
+/* void AFPSPlayerController::SetupInputComponent()
+{
+	Super::SetupInputComponent();
+
+		// UI input
+		//InputComponent->BindAction("InGameMenu", IE_Pressed, this, &AFPSPlayerController::OnToggleInGameMenu);
+}
+
+void AFPSPlayerController::OnToggleInGameMenu()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Escape Pressed to Access InGameMenu"));
+
+	
+} */

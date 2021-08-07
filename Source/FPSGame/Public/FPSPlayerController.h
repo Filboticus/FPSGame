@@ -14,4 +14,10 @@ class FPSGAME_API AFPSPlayerController : public APlayerController
 {
 	GENERATED_UCLASS_BODY()
 	
+public:
+	/** sets up input */
+	//virtual void SetupInputComponent() override;
+
+	/** toggle InGameMenu handler */
+	//void OnToggleInGameMenu();
 };
