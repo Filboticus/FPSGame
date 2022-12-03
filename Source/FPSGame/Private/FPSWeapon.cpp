@@ -2,8 +2,8 @@
 
 
 #include "FPSWeapon.h"
-#include "FPSCharacter.h"
-#include "FPSPlayerController.h"
+#include "Player/FPSCharacter.h"
+#include "Player/FPSPlayerController.h"
 #include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
 

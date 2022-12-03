@@ -75,13 +75,15 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	float Damage = 10;
-	
+
+private:
+
 	UPROPERTY(VisibleAnywhere)
-	USceneComponent* Root;
+		USceneComponent* Root;
 
 	/** weapon mesh: 1st person view */
-	UPROPERTY(VisibleAnywhere, Category=Mesh)
-	USkeletalMeshComponent* Mesh1P;
+	UPROPERTY(VisibleAnywhere, Category = Mesh)
+		USkeletalMeshComponent* Mesh1P;
 
 protected:
 	/** Get the aim of the weapon, allowing for adjustments to be made by the weapon */

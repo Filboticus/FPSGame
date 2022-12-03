@@ -5,7 +5,7 @@
 #include "FPSWeapon.h"
 #include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
-#include "FPSCharacter.h"
+#include "Player/FPSCharacter.h"
 
 void AFPSWeapon_Instant::FireWeapon()
 {

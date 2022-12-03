@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "FPSCharacter.h"
-#include "FPSPlayerCameraManager.h"
+#include "Player/FPSCharacter.h"
+#include "Player/FPSPlayerCameraManager.h"
 
 AFPSPlayerCameraManager::AFPSPlayerCameraManager(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
