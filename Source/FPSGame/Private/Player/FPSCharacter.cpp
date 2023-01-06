@@ -111,38 +111,16 @@ void AFPSCharacter::Fire()
 
 float AFPSCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
 {
-	if (Health <= 0.0f)
-	{
-		return 0.0f;
-	}
-	
-	const float ActualDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
-	if (ActualDamage > 0.0f)
-	{
-		Health -= ActualDamage;
-		if (Health <= 0.0f)
-		{
-			Die(ActualDamage, DamageEvent, EventInstigator, DamageCauser);
-		}
-		else
-		{
-			PlayHit(ActualDamage, DamageEvent, EventInstigator ? EventInstigator->GetPawn() : NULL, DamageCauser);
-		}
+	float DamageToApply = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 
-		MakeNoise(1.0f, EventInstigator ? EventInstigator->GetPawn() : this);
-	}
+	DamageToApply = FMath::Min(Health, DamageToApply);
+	Health -= DamageToApply;
 
-	UE_LOG(LogTemp, Warning, TEXT("Health: %f"), Health);
+	UE_LOG(LogTemp, Warning, TEXT("Health left %f"), Health);
 
-	return ActualDamage;
-
-	//float DamageToApply = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
-	//DamageToApply = FMath::Min(Health, DamageToApply);
-	//Health -= DamageToApply;
-	//UE_LOG(LogTemp, Warning, TEXT("Health: %f"), Health);
-	
-	//return DamageToApply;
+	return DamageToApply;
 }
+	
 
 void AFPSCharacter::MoveForward(float Value)
 {
@@ -258,6 +236,11 @@ USkeletalMeshComponent* AFPSCharacter::GetSpecificPawnMesh(bool WantFirstPerson)
 int32 AFPSCharacter::GetMaxHealth() const
 {
 	return GetClass()->GetDefaultObject<AFPSCharacter>()->Health;
+}
+
+bool AFPSCharacter::IsDead() const
+{
+	return false;
 }
 
 // Movement

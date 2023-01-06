@@ -20,4 +20,6 @@ public:
 	/** [local] weapon specific fire implementation */	
 	virtual void FireWeapon() override;
 
+
+
 };

@@ -20,6 +20,18 @@ void AFPSWeapon_Instant::FireWeapon()
 	FVector EndTrace = StartTrace + AimDir * MaxRange;
 	FHitResult Impact = WeaponTrace(StartTrace, EndTrace);
 	
+	APawn* const OwnerPawn = Cast<APawn>(GetOwner());
+	AController* const OwnerController = OwnerPawn->GetController();
+
+	//Damage 
+	AActor* HitActor = Impact.GetActor();
+	if (HitActor != nullptr)
+	{
+		FPointDamageEvent DamageEvent(Damage, Impact, AimDir, nullptr);
+		HitActor->TakeDamage(Damage, DamageEvent, OwnerController, this);
+	}
+
+	
 	// Spawn Impact FX at the location of the Hit
 	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactFX, Impact.Location, StartTrace.Rotation());
 

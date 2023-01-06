@@ -63,11 +63,18 @@ public:
 	/** get max health */
 	int32 GetMaxHealth() const;
 
+	/** get death state*/
+	UFUNCTION(BlueprintPure) //BlueprintPure does not have an execusion pin
+	bool IsDead() const;
+
 	/** Get either first or third person mesh.
 	*
 	* @param	WantFirstPerson If True returns the first person mesh, else returns the third
 	*/
 	USkeletalMeshComponent* GetSpecificPawnMesh(bool WantsFirstPerson) const;
+
+	/** Override TakeDage from Actor.h */
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
 
 protected:
@@ -81,10 +88,6 @@ private:
 	UPROPERTY(VisibleDefaultsOnly, Category="Mesh")
 	USkeletalMeshComponent* Mesh1PComponent;
 
-
-
-	/** Override TakeDage from Actor.h */
-	//virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
 	/** Fires a projectile. */
 	void Fire();
@@ -165,7 +168,7 @@ public:
 	float Health;
 
 	/** Take Damage, handle Death */
-	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
+	//virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
 
 	/** Pawn Suicide */
 	virtual void Suicide();

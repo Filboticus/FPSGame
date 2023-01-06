@@ -48,7 +48,7 @@ FVector AFPSWeapon::GetAdjustedAim() const
 		FRotator CamRot;
 		OwnerController->GetPlayerViewPoint(CamLoc, CamRot);
 
-		DrawDebugCamera(GetWorld(), CamLoc, CamRot, 90, 2.0f, FColor::Black, true);
+		//DrawDebugCamera(GetWorld(), CamLoc, CamRot, 90, 2.0f, FColor::Black, true);
 	
 		FinalAim = CamRot.Vector();
 
@@ -77,7 +77,7 @@ FVector AFPSWeapon::GetCameraDamageStartLocation(const FVector & AimDir) const
 	// adjust trace so there is nothing blocking the ray between the camera and the pawn
 	OutStartTrace = OutStartTrace + AimDir * 25;
 
-	DrawDebugCamera(GetWorld(), OutStartTrace, UnusedRotation, 90, 2.0f, FColor::Red, true);
+	//DrawDebugCamera(GetWorld(), OutStartTrace, UnusedRotation, 90, 2.0f, FColor::Red, true);
 
 	return OutStartTrace;
 }
@@ -85,14 +85,16 @@ FVector AFPSWeapon::GetCameraDamageStartLocation(const FVector & AimDir) const
 FHitResult AFPSWeapon::WeaponTrace(const FVector & StartTrace, const FVector & EndTrace) const
 {
 	UE_LOG(LogTemp, Warning, TEXT("WeaponTrace()"));
-	
+
 	FHitResult Hit;
+
 	bool bSuccess = GetWorld()->LineTraceSingleByChannel(Hit, StartTrace, EndTrace, ECollisionChannel::ECC_GameTraceChannel1);
 	if (bSuccess)
 	{
-		DrawDebugPoint(GetWorld(), StartTrace, 15, FColor::Red, true);
-		DrawDebugLine(GetWorld(), StartTrace, Hit.Location, FColor::Red, true);
-		DrawDebugPoint(GetWorld(), Hit.Location, 15, FColor::Red, true);
+		//DrawDebugPoint(GetWorld(), StartTrace, 15, FColor::Red, true);
+		//DrawDebugLine(GetWorld(), StartTrace, Hit.Location, FColor::Red, true);
+		//DrawDebugPoint(GetWorld(), Hit.Location, 15, FColor::Red, true);
+		
 	}
 	
 	return Hit;
